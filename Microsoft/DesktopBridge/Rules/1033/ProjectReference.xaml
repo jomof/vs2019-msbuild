@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="ProjectReference" DisplayName="Project Reference" PageTemplate="generic" Description="Project reference properties" xmlns="http://schemas.microsoft.com/build/2009/properties">
+    <Rule.Categories>
+        <Category Name="General" DisplayName="General" />
+    </Rule.Categories>
+
+    <Rule.DataSource>
+        <DataSource Persistence="ProjectFile" ItemType="ProjectReference" HasConfigurationCondition="false" />
+    </Rule.DataSource>
+
+    <StringProperty Name="FileNameAndExtension" DisplayName="File Name" ReadOnly="true" Category="General" Description="Name of the Application Reference.">
+        <StringProperty.DataSource>
+            <DataSource Persistence="Intrinsic" ItemType="ProjectReference" PersistedName="FileNameAndExtension" />
+        </StringProperty.DataSource>
+    </StringProperty>
+
+    <StringProperty Name="Identity" Visible="false" ReadOnly="true" Category="General" Description="The item specified in the Include attribute.">
+        <StringProperty.DataSource>
+            <DataSource Persistence="Intrinsic" ItemType="ProjectReference" PersistedName="Identity" />
+        </StringProperty.DataSource>
+    </StringProperty>
+
+    <EnumProperty Name="TrustLevel" Category="General" Visible="True" DisplayName="Trust Level" ReadOnly="false"
+        Description="Specifies the level of trust for the project reference application">
+        <EnumProperty.DataSource>
+            <DataSource Persistence="ProjectFile" ItemType="ProjectReference" PersistedName="TrustLevel" HasConfigurationCondition="false"/>
+        </EnumProperty.DataSource>
+        <EnumValue Name="Full" DisplayName="Full Trust" Description="Full Trust" IsDefault="True"/>
+        <EnumValue Name="Partial" DisplayName="Partial Trust" Description="Partial Trust" />
+    </EnumProperty>
+
+    <StringProperty Name="FullPath" ReadOnly="true" DisplayName="Identity" Category="General" Description="The Full path to the application reference" />
+    <BoolProperty Name="ReferenceOutputAssembly" Category="General" Visible="false" />
+    <BoolProperty Name="Private" Category="General" Visible="false" />
+    <BoolProperty Name="CopyLocalSatelliteAssemblies" Category="General" Visible="false" />
+    <BoolProperty Name="DesktopBridgeSelfContained" Category="General" Visible="True" DisplayName="Self Contained">
+        <BoolProperty.DataSource>
+            <DataSource Persistence="DesktopBridgeProjectPropertiesProvider" ItemType="ProjectReference" PersistedName="DesktopBridgeSelfContained" HasConfigurationCondition="false"/>
+        </BoolProperty.DataSource>
+    </BoolProperty>
+    <StringProperty Name="DesktopBridgeIdentifier" Category="General" Visible="True" DisplayName="Runtime Identifier" >
+        <StringProperty.DataSource>
+            <DataSource Persistence="DesktopBridgeProjectPropertiesProvider" ItemType="ProjectReference" PersistedName="DesktopBridgeIdentifier" HasConfigurationCondition="false"/>
+        </StringProperty.DataSource>
+    </StringProperty>
+    <StringProperty Name="Properties" ReadOnly="false" DisplayName="Build Properties" Visible="False"/>
+    <BoolProperty Name="SkipGetTargetFrameworkProperties" Visible="False" Category="General"/>
+</Rule>
